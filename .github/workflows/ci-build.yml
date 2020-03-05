@@ -17,7 +17,7 @@ jobs:
           - { os: ubuntu-18.04, compiler: clang-8,    stdlib: default }
     steps:
       - uses: actions/checkout@v1
-      - name: Install Compiler
+      - name: Install Compiler 
         run: |
           sudo apt update
           if [[ "${{ matrix.cfg.compiler }}" =~ ^gcc.*$ ]]; then
