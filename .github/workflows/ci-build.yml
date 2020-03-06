@@ -9,7 +9,7 @@ jobs:
         cfg:
           - { os: ubuntu-16.04, compiler: gcc-4.8,    stdlib: default }
           - { os: ubuntu-16.04, compiler: gcc,        stdlib: default }   # GCC 5
-          - { os: ubuntu-16.04, compiler: clang,      stdlib: libc++  }   # Clang 3.8
+          - { os: ubuntu-16.04, compiler: clang,      stdlib: default }   # Clang 3.8
           - { os: ubuntu-18.04, compiler: gcc,        stdlib: default }   # GCC 7
           - { os: ubuntu-18.04, compiler: clang,      stdlib: default }   # Clang 6.0
           - { os: ubuntu-18.04, compiler: gcc-8,      stdlib: default }
@@ -32,7 +32,7 @@ jobs:
         run: |
           export CC="${{ matrix.cfg.compiler }}"
           export CXX="$(echo "${{ matrix.cfg.compiler }}" | sed -e 's,gcc,g++,;s,clang,clang++,')"
-          if [[ "${{ matrix.cfg.compiler }}" == "clang" ]]; then
+          if [[ "${{ matrix.cfg.stdlib }}" == "libc++" ]]; then
             export CXXFLAGS="-stdlib=libc++ -I/usr/include/libcxxabi"
           fi
           mkdir -p build && cd build
