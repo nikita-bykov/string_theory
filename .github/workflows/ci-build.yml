@@ -28,6 +28,8 @@ jobs:
           fi
           if [[ "${{ matrix.cfg.stdlib }}" == "libc++" ]]; then
             sudo apt install libc++-dev libc++abi-dev
+          else
+            sudo apt install libc++-dev libc++abi-dev
           fi
       - name: Build and Test
         run: |
